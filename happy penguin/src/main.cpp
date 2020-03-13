@@ -2,7 +2,7 @@
 #include <HX711.h>
 #include <SoftwareSerial.h>
 
-#define calibration _factor -21010
+#define calibration_factor -21010
 #define DOUT  7 //MOSI pin
 #define CLK  8 //MISO pin
 #define TxD 1
@@ -11,50 +11,6 @@
 
 SoftwareSerial mySerial(RxD, TxD); // RX, TX for Bluetooth
 HX711 scale;
-
-void setup()
-{
-    Serial.begin(9600);
-    mySerial.begin(9600);
-    scale.begin(DOUT, CLK);
-    yield();
-
-    scale.set_scale(calibration_factor);
-    tare();
-}
-
-void tare()
-{
-    //Serial.println("Tare");
-
-    scale.tare(); //reset the weight
-    yield();
-    delay(1000);
-}
-
-void loop()
-{
-    byte c;
-
-    if(mySerial.available())
-    {
-        c = mySerial.read();
-        //Serial.println(c);
-        if(c == 97)
-        {
-            tare();
-        }
-    }
-
-    double value = scale.get_units();
-    double encrypted = encrypt(value);
-    mySerial.println(encrypted);
-    Serial.println(encrypted);
-    delay(1000);
-
-}
-
-
 
 #include<math.h>
 using namespace std;
@@ -69,6 +25,7 @@ int gcd(int a, int b) {
       b= t;
    }
 }
+
 double encrypt(double message) {
    //2 random prime numbers
    double p = 69697;
@@ -110,4 +67,53 @@ double encrypt(double message) {
     //cout<<"\n"<<"Track = "<<track;
     //cout<<"\n"<<"n = "<<n;
     return enc;
+}
+
+
+void tare()
+{
+    //Serial.println("Tare");
+
+    scale.tare(); //reset the weight
+    yield();
+    delay(1000);
+}
+
+
+
+
+
+
+
+void setup()
+{
+    Serial.begin(9600);
+    mySerial.begin(9600);
+    scale.begin(DOUT, CLK);
+    yield();
+
+    scale.set_scale(calibration_factor);
+    tare();
+}
+
+void loop()
+{
+    byte c;
+
+    if(mySerial.available())
+    {
+        c = mySerial.read();
+        //Serial.println(c);
+        if(c == 97)
+        {
+            tare();
+        }
+    }
+
+    double value = scale.get_units();
+    double encrypted = encrypt(value);
+    mySerial.println(encrypted);
+    Serial.println(encrypted);
+    delay(1000);
+
 }
