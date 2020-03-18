@@ -1,0 +1,14 @@
+//Primtallene 
+double p = 69697;
+double q = 420691;
+
+//Kalkulerer phi
+double phi= (p-1)*(q-1);
+
+//Danner dekrypteringsnøkkelen d ved hjelp av forhåndsbestemt e = 107
+double d1=1/107;
+double d=fmod(d1,phi);
+
+// Dekrypterer meldingen m
+double m = pow(c,d);
+m=fmod(m,n); 

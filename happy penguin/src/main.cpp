@@ -35,7 +35,7 @@ double encrypt(double message) {
    double phi= (p-1)*(q-1);//calculate phi
    //public key
    //e stands for encrypt
-   double e=7;
+   double e=100;
    //for checking that 1 < e < phi(n) and gcd(e, phi(n)) = 1; i.e., e and phi(n) are coprime.
    while(e<phi) {
       track = gcd(e,phi);
