@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/tobif/Desktop/Offline/Bachelor/RSA/main.cpp
+iostream
+-
+HX711.h
+-
+SoftwareSerial.h
+-
+math.h
+-
+iostream
+-
+math.h
+-
+string.h
+-
+stdlib.h
+-
+
