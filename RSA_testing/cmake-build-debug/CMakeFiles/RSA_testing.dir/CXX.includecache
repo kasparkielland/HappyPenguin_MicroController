@@ -7,8 +7,10 @@
 #IncludeRegexTransform: 
 
 C:/Users/tobif/Desktop/Offline/Bachelor/RSA_testing/main.cpp
-iostream
--
 math.h
+-
+cstdio
+-
+iostream
 -
 
